@@ -17,7 +17,7 @@ mongoose
   .then(console.log('Connected to database'));
 
 var corsOptions = {
-  origin: 'http://localhost:3001',
+  origin: 'https://fathomless-anchorage-80930.herokuapp.com/ ',
 };
 //Middleware
 app.set('view engine', 'ejs');

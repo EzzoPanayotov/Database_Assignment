@@ -1,5 +1,9 @@
 # Hristo Panayotov Advanced Database Assignment
 
+Heroku: https://fathomless-anchorage-80930.herokuapp.com/
+
+Github Repository: https://github.com/EzzoPanayotov/Database_Assignment
+
 ## Introduction
 
 The inspiration for this project is that by the end of 2021 I would like to create and publish my own web application, which would look something like the one I've done for this assignment.
