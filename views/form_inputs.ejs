@@ -1,0 +1,35 @@
+<%- include('layouts/main');-%>
+
+<div>
+  <h1>Create Your Article</h1>
+</div>
+<div class="form-group">
+  <label>Title </label>
+  <input
+    name="title"
+    type="text"
+    placeholder="Title"
+    required
+    value="<%= article.title %>"
+  />
+</div>
+<div class="form-group">
+  <label>Descritpion</label>
+  <textarea
+    name="description"
+    cols="30"
+    rows="10"
+    placeholder="Description"
+    required
+  >
+<%= article.description %></textarea
+  >
+</div>
+<div class="btnHolder">
+  <div class="saveBtn">
+    <input type="submit" value="Save" />
+  </div>
+  <div class="cancelBtn">
+    <a href="/">Cancel</a>
+  </div>
+</div>

@@ -1,0 +1,100 @@
+<%- include('layouts/main');-%>
+
+<div class="register-div">
+  <form action="/register" method="POST" id="register-form">
+    <div>
+      <h1>Register</h1>
+      <p class="err-msg"></p>
+    </div>
+    <div class="form-group">
+      <label>First Name: </label>
+      <input
+        autocomplete="off"
+        type="text"
+        name="firstName"
+        id="firstName"
+        placeholder="Enter your First Name"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Last Name: </label>
+      <input
+        autocomplete="off"
+        type="text"
+        name="lastName"
+        id="lastName"
+        placeholder="Enter your Last Name"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Email: </label>
+      <input
+        autocomplete="off"
+        type="text"
+        name="email"
+        id="email"
+        placeholder="Enter your email"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Password: </label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Enter your password"
+        required
+      />
+    </div>
+    <div>
+      <input type="submit" value="Register" />
+    </div>
+  </form>
+</div>
+<script>
+  const form = document.querySelector('#register-form');
+  form.addEventListener('submit', registerUser);
+  async function registerUser(event) {
+    const firstName = document.querySelector('#firstName').value;
+    const lastName = document.querySelector('#lastName').value;
+    const email = document.querySelector('#email').value;
+    const password = document.querySelector('#password').value;
+    const checkName = /^[^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
+    const checkPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+    const checkEmail =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    let errorMsg = document.querySelector('.err-msg');
+    if (!firstName.match(checkName)) {
+      errorMsg.style.opacity = '1';
+      errorMsg.innerHTML = 'First Name cannot contain numbers or symbols';
+    } else if (!lastName.match(checkName)) {
+      errorMsg.style.opacity = '1';
+      errorMsg.innerHTML = 'Last Name cannot contain numbers or symbols';
+    } else if (!email.match(checkEmail)) {
+      errorMsg.style.opacity = '1';
+      errorMsg.innerHTML = 'Invalid email address';
+    } else if (!password.match(checkPassword)) {
+      errorMsg.style.opacity = '1';
+      errorMsg.innerHTML =
+        ' The password should be between 6 to 20 characters and it must contain at least one number, one uppercase and one lowercase letter';
+    } else {
+      errorMsg.style.opacity = '0';
+    }
+    const result = await fetch('/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        password,
+      }),
+    });
+  }
+</script>

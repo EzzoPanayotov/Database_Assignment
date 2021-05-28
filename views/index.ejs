@@ -1,0 +1,54 @@
+<%- include('layouts/main');-%>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="h1-div">
+        <h1>Articles</h1>
+      </div>
+      <div class="nav">
+        <div class="homeHyperLinks">
+          <a href="/login">Login</a>
+        </div>
+        <div class="homeHyperLinks">
+          <a href="/register">Register</a>
+        </div>
+        <div class="homeHyperLinks">
+          <a href="/logout">Logout</a>
+        </div>
+      </div>
+    </div>
+    <div class="new-Article">
+      <a href="/newArticle">New Article</a>
+    </div>
+    <% articles.forEach(article => { %>
+    <div class="articleCards">
+      <div class="articleCardsBody">
+        <h3 class="cardTitle"><%= article.title %></h3>
+        <div class="dateCreated">
+          <%= article.createdAt.toLocaleDateString() %>
+        </div>
+        <div class="cardDesc"><%= article.description %></div>
+      </div>
+    </div>
+    <div class="crud-div">
+      <a class="read-more" href="/<%= article.id %>"> Read more</a>
+      <form
+        class="delete-btn-form"
+        action="/<%= article.id %>?override=DELETE"
+        method="POST"
+      >
+        <button type="submit" class="delete-btn">Delete</button>
+      </form>
+    </div>
+    <% }) %>
+  </body>
+</html>
